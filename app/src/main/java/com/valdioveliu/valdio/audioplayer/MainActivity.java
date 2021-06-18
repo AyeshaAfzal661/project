@@ -1,6 +1,5 @@
 package com.valdioveliu.valdio.audioplayer;
 
-import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -16,19 +15,23 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PersistableBundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+
 import android.util.Xml;
-import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 
@@ -72,6 +75,21 @@ public class MainActivity extends AppCompatActivity {
 
         loadAudio();
         initRecyclerView();
+
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                //Toast.makeText(this, " sucesfull ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AdView mAdView;
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -164,10 +182,10 @@ public class MainActivity extends AppCompatActivity {
             bindService(playerIntent, serviceConnection, Context.BIND_AUTO_CREATE);
             if(audioList.get(audioIndex).get_flag()==true)
             {
-                menu.getItem(1).setIcon(R.drawable.ic_favorite_filled);
+                menu.getItem(0).setIcon(R.drawable.ic_favorite_filled);
             }
             else {
-                menu.getItem(1).setIcon(R.drawable.favorite_icon);
+                menu.getItem(0).setIcon(R.drawable.favorite_icon);
             }
            // fav_flag=true;
 
@@ -177,10 +195,10 @@ public class MainActivity extends AppCompatActivity {
             storage.storeAudioIndex(audioIndex);
             if(audioList.get(audioIndex).get_flag()==true)
             {
-                menu.getItem(1).setIcon(R.drawable.ic_favorite_filled);
+                menu.getItem(0).setIcon(R.drawable.ic_favorite_filled);
             }
             else {
-                menu.getItem(1).setIcon(R.drawable.favorite_icon);
+                menu.getItem(0).setIcon(R.drawable.favorite_icon);
             }
             //Service is active
             //Send a broadcast to the service -> PLAY_NEW_AUDIO
