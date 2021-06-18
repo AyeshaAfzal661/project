@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Audio Player</string>
+    <string name="fav">My Favorites</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="web">Web</string>
+    <string name="admob_app_id">
+ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_banner_id">
+ca-app-pub-3940256099942544/6300978111</string>
+
+</resources>

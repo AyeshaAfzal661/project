@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.valdioveliu.valdio.audioplayer.MainActivity">
+    <item
+        android:id="@+id/menu_favorites"
+        android:icon="@drawable/favorite_icon"
+        android:title="@string/favorites"
+        app:showAsAction="ifRoom" />
+</menu>
