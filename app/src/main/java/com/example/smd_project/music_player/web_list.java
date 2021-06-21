@@ -1,4 +1,4 @@
-package com.valdioveliu.valdio.audioplayer;
+package com.example.smd_project.music_player;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,16 +10,14 @@ import android.os.IBinder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.valdioveliu.valdio.audioplayer.MainActivity.Broadcast_PLAY_NEW_AUDIO;
+import static com.example.smd_project.music_player.MainActivity.Broadcast_PLAY_NEW_AUDIO;
 
 public class web_list extends AppCompatActivity {
     private MediaPlayerService player;
@@ -70,7 +68,6 @@ public class web_list extends AppCompatActivity {
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
             MediaPlayerService.LocalBinder binder = (MediaPlayerService.LocalBinder) service;
             player = binder.getService();
             serviceBound = true;
@@ -82,10 +79,8 @@ public class web_list extends AppCompatActivity {
         }
     };
     private void playAudio(int audioIndex) {
-        //Check is service is active
         if (!serviceBound) {
-            //Store Serializable audioList to SharedPreferences
-            StorageUtil storage = new StorageUtil(getApplicationContext()); ///////////p
+            StorageUtil storage = new StorageUtil(getApplicationContext());
             storage.storeAudio(web_list);
             storage.storeAudioIndex(audioIndex);
 
@@ -95,12 +90,9 @@ public class web_list extends AppCompatActivity {
 
 
         } else {
-            //Store the new audioIndex to SharedPreferences
             StorageUtil storage = new StorageUtil(getApplicationContext());
             storage.storeAudioIndex(audioIndex);
 
-            //Service is active
-            //Send a broadcast to the service -> PLAY_NEW_AUDIO
             Intent broadcastIntent = new Intent(Broadcast_PLAY_NEW_AUDIO);
             sendBroadcast(broadcastIntent);
         }
@@ -112,8 +104,6 @@ public class web_list extends AppCompatActivity {
         super.onDestroy();
         if (serviceBound) {
             unbindService(serviceConnection);
-            //service is active
-            //   player.stopSelf();
         }
     }
 }
