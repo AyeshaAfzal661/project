@@ -38,7 +38,7 @@ public class Fav_List extends AppCompatActivity {
           t.setText("My Favorites");
             collapsingImageView = (ImageView) findViewById(R.id.collapsingImageView);
             TypedArray array = getResources().obtainTypedArray(R.array.images);
-            collapsingImageView.setImageDrawable(array.getDrawable(0));
+            collapsingImageView.setImageDrawable(array.getDrawable(1));
         loadAudio();
         initRecyclerView();
 

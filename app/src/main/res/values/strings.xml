@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Audio Player</string>
+    <string name="app_name">Music Player</string>
     <string name="fav">My Favorites</string>
     <string name="search">Search</string>
     <string name="favorites">Favorites</string>

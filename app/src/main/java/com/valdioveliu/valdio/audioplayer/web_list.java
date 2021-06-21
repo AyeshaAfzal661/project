@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,7 +36,7 @@ public class web_list extends AppCompatActivity {
         setContentView(R.layout.web_fav);
         collapsingImageView = (ImageView) findViewById(R.id.collapsingImageView);
         TypedArray array = getResources().obtainTypedArray(R.array.images);
-        collapsingImageView.setImageDrawable(array.getDrawable(0));
+        collapsingImageView.setImageDrawable(array.getDrawable(1));
 
         loadAudio();
         initRecyclerView();
@@ -110,7 +112,6 @@ public class web_list extends AppCompatActivity {
         super.onDestroy();
         if (serviceBound) {
             unbindService(serviceConnection);
-
             //service is active
             //   player.stopSelf();
         }

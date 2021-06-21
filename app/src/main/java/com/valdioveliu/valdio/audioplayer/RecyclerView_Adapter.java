@@ -50,6 +50,7 @@ public class RecyclerView_Adapter extends RecyclerView.Adapter<ViewHolder> {
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+
 }
 
 class ViewHolder extends RecyclerView.ViewHolder {

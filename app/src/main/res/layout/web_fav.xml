@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:background="#1E88E5"
+        android:background="@color/colorAccent"
         android:foregroundGravity="center_horizontal"
         android:text="  Web Songs"
         android:textAppearance="?android:attr/textAppearanceLarge"
